@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Fact table containing one row per order line"
+
+    columns:
+      - name: order_id
+        description: "Primary key of the customer"
+        tests:
+          - not_null
+
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+
+      - name: product_id
+        tests:
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+
+  - name: dim_customers
+    description: "Dimension table containing customer master data"
+
+    columns:
+      - name: customer_id
+        description: "Primary key of the customer"
+
+      - name: email
+        description: "Customer email address"

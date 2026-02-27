@@ -2,7 +2,7 @@ name: 'dbt_analytics_cj'
 version: '1.0'
 config-version: 2
 
-profile: 'tf_demo_profile'
+#profile: 'tf_demo_profile'
 
 model-paths: ["models"]
 seed-paths: ["seeds"]
@@ -20,7 +20,7 @@ models:
   tf_demo_dbt:
 
     +database: TF_DEMO
-    +schema: ANALYTICS   # Ziel-Schema für dbt-Modelle
+    +schema: DBT_CJANSON   # Ziel-Schema für dbt-Modelle
 
     staging:
       +materialized: view

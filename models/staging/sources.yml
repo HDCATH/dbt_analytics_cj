@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    database: TF_DEMO
+    schema: DBT_CJANSON
+    description: "Raw source tables"
+
+    tables:
+      - name: customers
+        description: "Customer dim data"
+
+      - name: orders
+        description: "Order header data"
+
+      - name: products
+        description: "Product dim data"
+
+      - name: order_items
+        description: "Order line items"

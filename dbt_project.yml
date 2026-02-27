@@ -1,0 +1,32 @@
+name: 'dbt_analytics_cj'
+version: '1.0'
+config-version: 2
+
+#profile: 'tf_demo_profile'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analysis"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  tf_demo_dbt:
+
+    +database: TF_DEMO
+    +schema: DBT_CJANSON   # Ziel-Schema für dbt-Modelle
+
+    staging:
+      +materialized: view
+
+    intermediate:
+      +materialized: view
+
+    marts:
+      +materialized: table

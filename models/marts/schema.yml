@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimensionstabelle für Kunden."
+    columns:
+      - name: customer_id
+        description: "Eindeutige ID des Kunden."
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "Vorname des Kunden."
+        tests:
+          - not_null
+
+      - name: last_name
+        description: "Nachname des Kunden."
+        tests:
+          - not_null
+
+      - name: email
+        description: "E-Mail-Adresse des Kunden."
+
+      - name: country
+        description: "Land des Kunden."
+
+      - name: created_at
+        description: "Zeitpunkt der Erstellung des Kundendatensatzes."
+
+
+  - name: dim_products
+    description: "Dimensionstabelle für Produkte."
+    columns:
+      - name: product_id
+        description: "Eindeutige ID des Produkts."
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Name des Produkts."
+        tests:
+          - not_null
+
+      - name: category
+        description: "Produktkategorie."
+
+      - name: price
+        description: "Standardpreis des Produkts."
+
+      - name: created_at
+        description: "Zeitpunkt der Erstellung des Produktdatensatzes."
+
+
+  - name: fct_orders
+    description: "Faktentabelle für Bestellpositionen."
+    columns:
+      - name: order_id
+        description: "Eindeutige ID der Bestellung."
+        tests:
+          - not_null
+
+      - name: order_date
+        description: "Datum der Bestellung."
+        tests:
+          - not_null
+
+
+      - name: customer_id
+        description: "Referenz auf den Kunden."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+
+      - name: product_id
+        description: "Referenz auf das Produkt."
+        tests:
+        - not_null
+        - relationships:
+            arguments:
+              to: ref('dim_products')
+              field: product_id
+
+      - name: order_status
+        description: "Status der Bestellung."
+
+      - name: quantity
+        description: "Bestellte Menge."
+        tests:
+          - not_null
+
+      - name: unit_price
+        description: "Preis pro Einheit."
+
+      - name: line_amount
+        description: "Gesamtbetrag der Position (quantity * unit_price)."

@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized="table") }}
 
 select
     order_id,
@@ -10,4 +10,4 @@ select
     unit_price,
     line_amount
 
-from {{ ref('int_order_enriched') }}
+from {{ ref("int_order_enriched") }}

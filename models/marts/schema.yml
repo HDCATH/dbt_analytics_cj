@@ -80,11 +80,11 @@ models:
       - name: product_id
         description: "Referenz auf das Produkt."
         tests:
-        - not_null
-        - relationships:
-            arguments:
-              to: ref('dim_products')
-              field: product_id
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_products')
+                field: product_id
 
       - name: order_status
         description: "Status der Bestellung."

@@ -17,7 +17,7 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  tf_demo_dbt:
+  dbt_analytics_cj:
 
     +database: TF_DEMO
     +schema: DBT_CJANSON   # Ziel-Schema für dbt-Modelle
